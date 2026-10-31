@@ -2,316 +2,315 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Mutaba'ah Santri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mutaba'ah - Setoran Hafalan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Reset & Pengaturan Dasar */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
-            background-color: #e2e8f0; 
-            color: #1e293b; 
-            display: flex; 
-            justify-content: center; 
-        }
-        
-        /* Wadah Utama Aplikasi (Berbentuk seperti HP) */
-        .app-container { 
-            width: 100%; 
-            max-width: 480px; 
-            background-color: #ffffff; 
-            min-height: 100vh; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Bagian Atas (Header) */
-        .header { 
-            background-color: #0f766e; 
-            color: white; 
-            padding: 20px 16px; 
-            text-align: center; 
-            font-size: 1.25rem; 
-            font-weight: 700; 
-            letter-spacing: 0.5px;
-        }
-
-        /* Navigasi Tab */
-        .nav-tabs { 
-            display: flex; 
-            background: #f8fafc; 
-            border-bottom: 1px solid #cbd5e1; 
-        }
-        .nav-tabs button { 
-            flex: 1; 
-            padding: 16px 10px; 
-            border: none; 
-            background: transparent; 
-            font-size: 0.95rem; 
-            font-weight: 600; 
-            color: #64748b; 
-            cursor: pointer; 
-            transition: all 0.2s ease;
-        }
-        .nav-tabs button.active { 
-            color: #0f766e; 
-            border-bottom: 3px solid #0f766e; 
-            background-color: #ffffff;
-        }
-
-        /* Area Konten */
-        .content { padding: 24px 20px; flex: 1; }
-
-        /* Elemen Formulir */
-        .form-group { margin-bottom: 16px; }
-        .form-group label { 
-            display: block; 
-            margin-bottom: 8px; 
-            font-size: 0.9rem; 
-            font-weight: 600; 
-            color: #475569; 
-        }
-        .form-control { 
-            width: 100%; 
-            padding: 12px 14px; 
-            border: 1px solid #cbd5e1; 
-            border-radius: 8px; 
-            font-size: 1rem; 
-            outline: none; 
-            transition: border-color 0.2s;
-            background-color: #f8fafc;
-        }
-        .form-control:focus { 
-            border-color: #0f766e; 
-            background-color: #ffffff;
-        }
-        .row { display: flex; gap: 16px; }
-        .row .form-group { flex: 1; }
-        textarea.form-control { resize: vertical; min-height: 90px; }
-
-        /* Tombol Simpan */
-        .btn-submit { 
-            width: 100%; 
-            padding: 14px; 
-            background-color: #0f766e; 
-            color: white; 
-            border: none; 
-            border-radius: 8px; 
-            font-size: 1rem; 
-            font-weight: 700; 
-            cursor: pointer; 
-            margin-top: 10px; 
-            box-shadow: 0 4px 6px -1px rgba(15, 118, 110, 0.2);
-        }
-        .btn-submit:active { background-color: #115e59; transform: translateY(1px); }
-
-        /* Kartu Tampilan Rapor */
-        .card { 
-            border: 1px solid #e2e8f0; 
-            border-radius: 12px; 
-            padding: 16px; 
-            margin-bottom: 16px; 
-            background: #ffffff; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02); 
-        }
-        .card-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 12px; 
-            padding-bottom: 12px; 
-            border-bottom: 1px dashed #e2e8f0; 
-        }
-        .date { font-size: 0.85rem; color: #64748b; font-weight: 500; }
-        
-        /* Label Kualitas Hafalan */
-        .badge { 
-            padding: 6px 12px; 
-            border-radius: 20px; 
-            font-size: 0.75rem; 
-            font-weight: 700; 
-            color: white; 
-            text-transform: uppercase;
-        }
-        .badge.lancar { background-color: #10b981; }
-        .badge.kurang { background-color: #f59e0b; color: #fff; }
-        .badge.ulangi { background-color: #ef4444; }
-
-        .surah-title { font-size: 1.15rem; font-weight: 700; color: #0f172a; }
-        .notes { 
-            margin-top: 12px; 
-            padding: 12px; 
-            background-color: #f0fdfa; 
-            border-left: 4px solid #0f766e; 
-            font-size: 0.9rem; 
-            border-radius: 0 6px 6px 0; 
-            color: #334155;
-        }
-
-        /* Class Penting untuk Menyembunyikan Tab */
-        .hidden { display: none !important; }
-        .empty-state { text-align: center; padding: 40px 20px; color: #94a3b8; font-style: italic; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .toast-enter { animation: toastEnter 0.3s ease-out forwards; }
+        .toast-exit { animation: toastExit 0.3s ease-in forwards; }
+        @keyframes toastEnter { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes toastExit { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-100%); opacity: 0; } }
     </style>
 </head>
-<body>
+<body class="bg-[#B8860B] text-gray-800 antialiased h-screen w-full overflow-hidden relative">
 
-    <div class="app-container">
-        
-        <div class="header">
-            Buku Mutaba'ah Santri
-        </div>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="fixed inset-0 bg-amber-700 flex flex-col items-center justify-center z-[100] transition-opacity duration-500">
+        <h1 class="text-3xl font-bold text-white mb-2 text-center px-4">Laporan Santri</h1>
+        <p class="text-amber-100 text-lg text-center px-4">Ma'had Imam Bukhari Makassar</p>
+    </div>
 
-        <div class="nav-tabs">
-            <button id="tab-ustadz" class="active" onclick="switchTab('ustadz')">Input Ustadz</button>
-            <button id="tab-wali" onclick="switchTab('wali')">Rapor Wali Santri</button>
-        </div>
-
-        <div class="content">
-            <!-- HALAMAN INPUT USTADZ -->
-            <div id="page-ustadz">
-                <form id="form-setoran">
-                    <div class="form-group">
-                        <label>Nama Santri</label>
-                        <select id="input-santri" class="form-control" required>
-                            <option value="">-- Pilih Nama Santri --</option>
-                            <option value="Ahmad">Ahmad</option>
-                            <option value="Fatimah">Fatimah</option>
-                            <option value="Umar">Umar</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Nama Surah</label>
-                        <input type="text" id="input-surah" class="form-control" placeholder="Contoh: Al-Mulk" required>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <label>Dari Ayat</label>
-                            <input type="number" id="input-mulai" class="form-control" placeholder="1" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Sampai Ayat</label>
-                            <input type="number" id="input-selesai" class="form-control" placeholder="10" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Kualitas Hafalan</label>
-                        <select id="input-kualitas" class="form-control" required>
-                            <option value="Lancar">Lancar</option>
-                            <option value="Kurang Lancar">Kurang Lancar</option>
-                            <option value="Ulangi">Ulangi</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Catatan Ustadz (Opsional)</label>
-                        <textarea id="input-catatan" class="form-control" placeholder="Tuliskan catatan perbaikan makhraj atau tajwid di sini..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Simpan Setoran</button>
-                </form>
+    <!-- Auth Container (Login & Register) -->
+    <div id="auth-screen" class="fixed inset-0 bg-[#B8860B] flex items-center justify-center z-[90] hidden">
+        <div class="bg-white p-8 rounded-3xl shadow-xl w-full max-w-md mx-4 border border-yellow-200">
+            <div class="text-center mb-8">
+                <!-- Logo diganti menggunakan logo.png -->
+                <img src="logo.png" alt="Logo" class="w-20 h-20 mx-auto mb-4 object-contain drop-shadow-md">
+                
+                <h2 class="text-2xl font-bold text-yellow-800" id="auth-title">Masuk Aplikasi</h2>
+                <p class="text-yellow-600 text-sm">Ma'had Imam Bukhari Makassar</p>
             </div>
 
-            <!-- HALAMAN RAPOR WALI SANTRI -->
-            <div id="page-wali" class="hidden">
-                <div class="form-group">
-                    <label>Pilih Data Anak:</label>
-                    <select id="filter-santri" class="form-control" onchange="renderRapor()">
-                        <option value="Ahmad">Ahmad</option>
-                        <option value="Fatimah">Fatimah</option>
-                        <option value="Umar">Umar</option>
-                    </select>
+            <!-- Form Login -->
+            <form id="form-login" class="space-y-5 block">
+                <div>
+                    <label class="block text-sm font-semibold text-yellow-700 mb-1">Username / Nama Ustadz</label>
+                    <input type="text" id="login-username" required class="w-full px-4 py-3 rounded-xl border border-yellow-300 focus:ring-2 focus:ring-amber-500 outline-none bg-yellow-50 focus:bg-white">
                 </div>
-                <div id="daftar-rapor">
-                    <!-- Rapor akan muncul di sini secara otomatis -->
+                <div>
+                    <label class="block text-sm font-semibold text-yellow-700 mb-1">PIN</label>
+                    <input type="password" id="login-pin" required class="w-full px-4 py-3 rounded-xl border border-yellow-300 focus:ring-2 focus:ring-amber-500 outline-none bg-yellow-50 focus:bg-white">
                 </div>
+                <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3.5 rounded-xl transition-all">Masuk</button>
+                <p class="text-center text-sm text-yellow-600 mt-4">Belum punya akun? <a href="#" onclick="toggleAuth('register')" class="text-amber-600 font-bold">Daftar di sini</a></p>
+            </form>
+
+            <!-- Form Register -->
+            <form id="form-register" class="space-y-5 hidden">
+                <div>
+                    <label class="block text-sm font-semibold text-yellow-700 mb-1">Buat Username Baru</label>
+                    <input type="text" id="reg-username" required class="w-full px-4 py-3 rounded-xl border border-yellow-300 focus:ring-2 focus:ring-amber-500 outline-none bg-yellow-50 focus:bg-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-yellow-700 mb-1">Buat PIN (Minimal 4 Angka)</label>
+                    <input type="password" id="reg-pin" required minlength="4" class="w-full px-4 py-3 rounded-xl border border-yellow-300 focus:ring-2 focus:ring-amber-500 outline-none bg-yellow-50 focus:bg-white">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-all">Daftar Akun</button>
+                <p class="text-center text-sm text-yellow-600 mt-4">Sudah punya akun? <a href="#" onclick="toggleAuth('login')" class="text-amber-600 font-bold">Masuk di sini</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="main-app" class="flex h-full w-full hidden">
+        <!-- Toast Notification -->
+        <div id="toast" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-[60] hidden">
+            <div class="bg-amber-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-3">
+                <i class="fas fa-check-circle"></i>
+                <span id="toast-message" class="font-medium">Pesan</span>
             </div>
         </div>
 
+        <!-- Sidebar Desktop -->
+        <aside class="hidden md:flex flex-col w-64 bg-amber-700 text-white h-full shadow-xl z-20">
+            <div class="p-6 border-b border-amber-600 flex items-center space-x-3">
+                <!-- Logo diganti menggunakan logo.png -->
+                <div class="bg-white p-1 rounded-lg">
+                    <img src="logo.png" alt="Logo" class="w-7 h-7 object-contain">
+                </div>
+                <h1 class="text-xl font-bold tracking-wide">Mutaba'ah</h1>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <button onclick="switchTab('dashboard')" id="nav-desktop-dashboard" class="nav-btn-desktop w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-amber-800 text-white font-medium transition-colors"><i class="fas fa-chart-pie w-5"></i><span>Dasbor</span></button>
+                <button onclick="switchTab('input')" id="nav-desktop-input" class="nav-btn-desktop w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-amber-600/50 text-amber-100 font-medium transition-colors"><i class="fas fa-microphone-lines w-5"></i><span>Input Setoran</span></button>
+                <button onclick="switchTab('riwayat')" id="nav-desktop-riwayat" class="nav-btn-desktop w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-amber-600/50 text-amber-100 font-medium transition-colors"><i class="fas fa-list-check w-5"></i><span>Riwayat</span></button>
+            </nav>
+            <div class="p-4 border-t border-amber-600 flex flex-col space-y-3">
+                <div class="text-sm text-amber-200 text-center user-display-name font-medium">Pengguna</div>
+                <button onclick="logout()" class="w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg bg-red-500/20 hover:bg-red-500/40 text-red-100 transition-colors text-sm font-semibold"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col h-full w-full relative">
+            <header class="md:hidden bg-amber-700 text-white px-5 py-4 flex items-center justify-between shadow-md z-10 sticky top-0">
+                <!-- Logo diganti menggunakan logo.png -->
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Logo" class="w-7 h-7 object-contain bg-white rounded-md p-0.5">
+                    <h1 class="text-lg font-bold">Mutaba'ah</h1>
+                </div>
+                <button onclick="logout()" class="w-8 h-8 rounded-full bg-red-500/80 flex items-center justify-center hover:bg-red-600 transition-colors shadow-sm"><i class="fas fa-sign-out-alt text-sm text-white"></i></button>
+            </header>
+
+            <div class="flex-1 overflow-y-auto no-scrollbar pb-24 md:pb-6 p-4 md:p-8 w-full max-w-5xl mx-auto">
+                <!-- VIEW: DASHBOARD -->
+                <section id="view-dashboard" class="view-section animate-fade-in block">
+                    <h2 class="text-2xl font-bold text-white mb-6 drop-shadow-md">Dasbor Utama</h2>
+                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-yellow-100 text-center">
+                        <p class="text-gray-600">Gunakan tab <b>Input Setoran</b> untuk mencatat data.</p>
+                    </div>
+                </section>
+
+                <!-- VIEW: INPUT SETORAN -->
+                <section id="view-input" class="view-section hidden">
+                    <h2 class="text-2xl font-bold text-white mb-6 drop-shadow-md">Form Input Setoran</h2>
+                    <div class="bg-white rounded-2xl shadow-sm border border-yellow-100 p-6">
+                        <form id="form-setoran" class="space-y-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div><label class="block text-sm font-semibold mb-1">Nama Santri *</label><input type="text" id="input-nama" required class="w-full px-4 py-2.5 rounded-lg border border-yellow-300"></div>
+                                <div><label class="block text-sm font-semibold mb-1">Jenis Setoran *</label>
+                                    <select id="input-jenis" required class="w-full px-4 py-2.5 rounded-lg border border-yellow-300">
+                                        <option value="Ziyadah">Ziyadah</option>
+                                        <option value="Murojaah">Murojaah</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-5">
+                                <div><label class="block text-sm font-semibold mb-1">Surah *</label><input type="text" id="input-surah" required class="w-full px-4 py-2.5 rounded-lg border border-yellow-300"></div>
+                                <div><label class="block text-sm font-semibold mb-1">Ayat *</label><input type="text" id="input-ayat" required class="w-full px-4 py-2.5 rounded-lg border border-yellow-300"></div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-5 bg-yellow-50 p-4 rounded-xl border border-yellow-200">
+                                <div><label class="block text-sm font-semibold mb-1 text-center">Kelancaran (1-100)</label><input type="number" id="input-kelancaran" min="1" max="100" required class="w-full px-4 py-2.5 rounded-lg border border-yellow-300 text-center"></div>
+                                <div><label class="block text-sm font-semibold mb-1 text-center">Tajwid (1-100)</label><input type="number" id="input-tajwid" min="1" max="100" required class="w-full px-4 py-2.5 rounded-lg border border-yellow-300 text-center"></div>
+                            </div>
+                            <button type="submit" id="btn-submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3.5 rounded-xl shadow-md transition-all">Simpan ke Google Sheets</button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- VIEW: RIWAYAT -->
+                <section id="view-riwayat" class="view-section hidden">
+                    <h2 class="text-2xl font-bold text-white mb-6 drop-shadow-md">Riwayat Setoran</h2>
+                    <div class="bg-white rounded-2xl p-8 shadow-sm border border-yellow-100 text-center text-gray-600">
+                        <i class="fas fa-table text-4xl mb-3 text-yellow-500"></i>
+                        <p>Riwayat kini dikelola di dalam Google Sheets.</p>
+                        <a id="sheet-link" href="#" target="_blank" class="mt-4 inline-block bg-amber-100 text-amber-700 px-4 py-2 rounded-lg font-bold">Buka Google Sheets</a>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation Mobile -->
+        <nav class="md:hidden fixed bottom-0 w-full bg-white border-t border-yellow-200 z-50 flex justify-around pb-safe pt-1 shadow-md">
+            <button onclick="switchTab('dashboard')" id="nav-mobile-dashboard" class="nav-btn-mobile flex-1 py-3 flex flex-col items-center text-amber-600"><i class="fas fa-chart-pie text-xl mb-1"></i><span class="text-[10px]">Dasbor</span></button>
+            <button onclick="switchTab('input')" id="nav-mobile-input" class="nav-btn-mobile flex-1 py-3 flex flex-col items-center text-gray-400"><i class="fas fa-plus text-xl mb-1"></i><span class="text-[10px]">Input</span></button>
+            <button onclick="switchTab('riwayat')" id="nav-mobile-riwayat" class="nav-btn-mobile flex-1 py-3 flex flex-col items-center text-gray-400"><i class="fas fa-list-check text-xl mb-1"></i><span class="text-[10px]">Riwayat</span></button>
+        </nav>
     </div>
 
     <script>
-        // Database sementara (Array)
-        let databaseSetoran = [
-            {
-                nama: "Ahmad",
-                tanggal: "30 Oktober 2026",
-                surah: "Al-Baqarah",
-                mulai: 1,
-                selesai: 5,
-                kualitas: "Lancar",
-                catatan: "Alhamdulillah sangat lancar, pertahankan makhrojnya."
-            }
-        ];
+        // ==== KONFIGURASI GOOGLE SHEETS ====
+        const GOOGLE_SHEET_API_URL = "MASUKKAN_URL_WEB_APP_DI_SINI";
+        const GOOGLE_SHEET_VIEW_URL = "https://docs.google.com/spreadsheets/d/1F7cAdp8DyhdWSTsrX8JEdcbvA446jhO5llgmVYelwr8/edit?usp=drivesdk"; 
 
-        // Logika Perpindahan Tab
-        function switchTab(tab) {
-            document.getElementById('tab-ustadz').classList.remove('active');
-            document.getElementById('tab-wali').classList.remove('active');
-            document.getElementById('page-ustadz').classList.add('hidden');
-            document.getElementById('page-wali').classList.add('hidden');
+        document.getElementById('sheet-link').href = GOOGLE_SHEET_VIEW_URL;
 
-            document.getElementById('tab-' + tab).classList.add('active');
-            document.getElementById('page-' + tab).classList.remove('hidden');
+        // UI Helpers
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = msg;
+            toast.classList.remove('hidden', 'toast-exit');
+            toast.classList.add('toast-enter');
+            setTimeout(() => { toast.classList.remove('toast-enter'); toast.classList.add('toast-exit'); }, 3000);
+        }
 
-            if(tab === 'wali') {
-                renderRapor();
+        function switchTab(tabId) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`view-${tabId}`).classList.remove('hidden');
+            
+            // Mengubah ke warna amber (emas) di JavaScript
+            document.querySelectorAll('.nav-btn-desktop').forEach(el => { el.classList.remove('bg-amber-800', 'text-white'); el.classList.add('text-amber-100'); });
+            const deskBtn = document.getElementById(`nav-desktop-${tabId}`);
+            if(deskBtn) { deskBtn.classList.add('bg-amber-800', 'text-white'); deskBtn.classList.remove('text-amber-100'); }
+
+            document.querySelectorAll('.nav-btn-mobile').forEach(el => { el.classList.remove('text-amber-600'); el.classList.add('text-gray-400'); });
+            const mobBtn = document.getElementById(`nav-mobile-${tabId}`);
+            if(mobBtn) { mobBtn.classList.add('text-amber-600'); mobBtn.classList.remove('text-gray-400'); }
+        }
+
+        // ==== SISTEM AKUN (LOCAL STORAGE) ====
+        const USERS_KEY = 'mutabaah_users';
+        
+        if(!localStorage.getItem(USERS_KEY)) {
+            localStorage.setItem(USERS_KEY, JSON.stringify([{username: 'Admin', pin: '123456'}]));
+        }
+
+        function toggleAuth(mode) {
+            if(mode === 'register') {
+                document.getElementById('form-login').classList.replace('block', 'hidden');
+                document.getElementById('form-register').classList.replace('hidden', 'block');
+                document.getElementById('auth-title').innerText = "Daftar Akun Baru";
+            } else {
+                document.getElementById('form-register').classList.replace('block', 'hidden');
+                document.getElementById('form-login').classList.replace('hidden', 'block');
+                document.getElementById('auth-title').innerText = "Masuk Aplikasi";
             }
         }
 
-        // Logika Simpan Data Setoran
-        document.getElementById('form-setoran').addEventListener('submit', function(e) {
+        // Register Logic
+        document.getElementById('form-register').addEventListener('submit', (e) => {
             e.preventDefault();
-
-            const opsiTanggal = { day: 'numeric', month: 'long', year: 'numeric' };
-            const tanggalSekarang = new Date().toLocaleDateString('id-ID', opsiTanggal);
-
-            const dataBaru = {
-                nama: document.getElementById('input-santri').value,
-                tanggal: tanggalSekarang,
-                surah: document.getElementById('input-surah').value,
-                mulai: document.getElementById('input-mulai').value,
-                selesai: document.getElementById('input-selesai').value,
-                kualitas: document.getElementById('input-kualitas').value,
-                catatan: document.getElementById('input-catatan').value
-            };
-
-            // Tambahkan data ke urutan paling atas
-            databaseSetoran.unshift(dataBaru);
-
-            alert('Data setoran berhasil disimpan!');
-            this.reset();
-        });
-
-        // Logika Menampilkan Rapor
-        function renderRapor() {
-            const wadah = document.getElementById('daftar-rapor');
-            const santriDipilih = document.getElementById('filter-santri').value;
-            wadah.innerHTML = ''; 
-
-            const dataAnak = databaseSetoran.filter(item => item.nama === santriDipilih);
-
-            if(dataAnak.length === 0) {
-                wadah.innerHTML = '<div class="empty-state">Belum ada riwayat setoran untuk santri ini.</div>';
+            const user = document.getElementById('reg-username').value.trim();
+            const pin = document.getElementById('reg-pin').value;
+            
+            let users = JSON.parse(localStorage.getItem(USERS_KEY));
+            
+            const exists = users.find(u => u.username.toLowerCase() === user.toLowerCase());
+            if(exists) {
+                alert("Username sudah digunakan! Silakan pilih nama lain.");
                 return;
             }
 
-            dataAnak.forEach(data => {
-                let kelasBadge = 'lancar';
-                if(data.kualitas === 'Kurang Lancar') kelasBadge = 'kurang';
-                if(data.kualitas === 'Ulangi') kelasBadge = 'ulangi';
+            users.push({username: user, pin: pin});
+            localStorage.setItem(USERS_KEY, JSON.stringify(users));
+            
+            alert("Akun berhasil dibuat! Silakan masuk.");
+            document.getElementById('form-register').reset();
+            toggleAuth('login');
+        });
 
-                const cardHTML = `
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="date">${data.tanggal}</span>
-                            <span class="badge ${kelasBadge}">${data.kualitas}</span>
-                        </div>
-                        <div class="surah-title">Surah ${data.surah} (Ayat ${data.mulai} - ${data.selesai})</div>
-                        ${data.catatan ? `<div class="notes"><strong>Catatan Ustadz:</strong><br>${data.catatan}</div>` : ''}
-                    </div>
-                `;
-                wadah.innerHTML += cardHTML;
-            });
+        // Login Logic
+        document.getElementById('form-login').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = document.getElementById('login-username').value.trim();
+            const pin = document.getElementById('login-pin').value;
+            
+            let users = JSON.parse(localStorage.getItem(USERS_KEY));
+            const isValid = users.find(u => u.username.toLowerCase() === user.toLowerCase() && u.pin === pin);
+            
+            if(isValid) {
+                localStorage.setItem('mutabaah_logged_in', isValid.username);
+                document.getElementById('auth-screen').classList.add('hidden');
+                document.getElementById('main-app').classList.remove('hidden');
+                document.querySelectorAll('.user-display-name').forEach(el => el.innerText = isValid.username);
+                document.getElementById('form-login').reset();
+            } else {
+                alert("Login gagal! Username atau PIN salah.");
+            }
+        });
+
+        window.logout = function() {
+            if(confirm("Keluar dari aplikasi?")) {
+                localStorage.removeItem('mutabaah_logged_in');
+                document.getElementById('main-app').classList.add('hidden');
+                document.getElementById('auth-screen').classList.remove('hidden');
+            }
         }
-    </script>
-</body>
-</html>
+
+        // Init Splash & Check Login
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('splash-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('splash-screen').classList.add('hidden');
+                    const loggedInUser = localStorage.getItem('mutabaah_logged_in');
+                    if(loggedInUser) {
+                        document.getElementById('main-app').classList.remove('hidden');
+                        document.querySelectorAll('.user-display-name').forEach(el => el.innerText = loggedInUser);
+                    } else {
+                        document.getElementById('auth-screen').classList.remove('hidden');
+                    }
+                }, 500);
+            }, 1500);
+        });
+
+        // ==== KIRIM DATA KE GOOGLE SHEETS ====
+        const formSetoran = document.getElementById('form-setoran');
+        const btnSubmit = document.getElementById('btn-submit');
+
+        formSetoran.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if(GOOGLE_SHEET_API_URL === "MASUKKAN_URL_WEB_APP_DI_SINI") {
+                alert("Silakan hubungkan Web App URL Google Sheets terlebih dahulu di dalam kode script!");
+                return;
+            }
+
+            btnSubmit.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Menyimpan...`;
+            btnSubmit.disabled = true;
+
+            const ustadzName = localStorage.getItem('mutabaah_logged_in') || 'Unknown';
+            const nilaiK = parseInt(document.getElementById('input-kelancaran').value);
+            const nilaiT = parseInt(document.getElementById('input-tajwid').value);
+
+            const payload = {
+                timestamp: new Date().toLocaleString('id-ID'),
+                ustadz: ustadzName,
+                namaSantri: document.getElementById('input-nama').value,
+                jenisSetoran: document.getElementById('input-jenis').value,
+                surah: document.getElementById('input-surah').value,
+                ayat: document.getElementById('input-ayat').value,
+                nilaiKelancaran: nilaiK,
+                nilaiTajwid: nilaiT,
+                nilaiRata: Math.round((nilaiK + nilaiT) / 2)
+            };
+
+            fetch(GOOGLE_SHEET_API_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json
